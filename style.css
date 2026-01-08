@@ -1,0 +1,16 @@
+body {
+    background: linear-gradient(90deg, #f35c5c, #aaf058);
+}
+
+.name {
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-image: linear-gradient(230deg, #96a860, #4ea6e1);
+    padding: 10px;
+    border: 4px solid #220626;
+}
+
+.link {
+    font-family: sans-serif;
+}
