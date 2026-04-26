@@ -102,6 +102,31 @@ header {
     background-color: #7affd3;
 }
 
+/* --- cal --- */
+.cal_btn {
+    background-color: var(--color-accent);
+    color: var(--color-background); /* 文字色を背景色にすることでコントラストを強調 */
+    padding: 1% 15%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600px;
+    border-radius: 8px; /* 角を丸くして優しい印象に */
+    box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
+    transition: all var(--transition-speed);
+    margin-bottom: 5px;
+}
+
+.cal_btn:hover {
+    transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
+    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
+    background-color: #7affd3;
+}
+
+.cal {
+    margin-top: 20px;
+}
+
 /* --- カード要素 (カードコンポーネント) --- */
 .card {
     background-color: var(--color-secondary-bg);
