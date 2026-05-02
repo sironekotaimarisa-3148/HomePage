@@ -1,9 +1,13 @@
-let num = 0
-let onFirstNum = false
-let onSecondNum = false
-let numFirst
-let numSecond
-let ope
+// 計算履歴を保持する配列
+let calculationHistory = [];
+// 現在の演算子
+let currentOperator = null;
+// 前の計算結果（連続計算用）
+let previousResult = null;
+// 新しい数値の入力開始フラグ
+let isNewNumber = true;
+// 最後に入力されたもの（演算子か数字か）
+let lastInputType = null; // "number" or "operator"
 
 const one = document.getElementById("one");
 const two = document.getElementById("two");
@@ -21,40 +25,93 @@ const div = document.getElementById("div");
 const equal = document.getElementById("equal");
 const result = document.getElementById("result");
 
+// 演算処理を行う関数
+function calculate(num1, num2, operator) {
+    switch(operator) {
+        case " + ":
+            return Number(num1) + Number(num2);
+        case " - ":
+            return Number(num1) - Number(num2);
+        case " * ":
+            return Number(num1) * Number(num2);
+        case " / ":
+            if (Number(num2) === 0) {
+                return "Error";
+            }
+            return Number(num1) / Number(num2);
+        default:
+            return num2;
+    }
+}
+
 function result_open(ans, it_num) {
-    if (it_num === "1" || it_num === "2" || it_num === "3"|| it_num === "4" || it_num === "5" || it_num === "6" || it_num === "7" || it_num === "8" || it_num === "9"){
-        result.textContent = ans
-    }else if (it_num == " + " || it_num == " - " || it_num == " * " || it_num == " / ") {
-        if (onFirstNum == false) {
-            numFirst = ans;
-            ope = it_num; //演算子を保存
-            onFirstNum = true;
-            result.textContent = "null"
-            num = 0
-            console.log(numFirst);
+    // 数字が入力された場合
+    if (it_num === "1" || it_num === "2" || it_num === "3" || it_num === "4" || it_num === "5" || 
+        it_num === "6" || it_num === "7" || it_num === "8" || it_num === "9") {
+        
+        // 新しい数値の入力開始時
+        if (isNewNumber) {
+            result.textContent = it_num;
+            isNewNumber = false;
+        } else {
+            // 数値の桁を追加
+            result.textContent = result.textContent + it_num;
         }
-        // else if (onSecondNum == false) {
-        //     numSecond = ans;
-        //     onSecondNum = true
-        //     num = 0
-        // };
-    };
-    if (it_num == " = ") {
-        if (ope == " + ") {
-            result.textContent = Number(numFirst) + Number(num)
+        lastInputType = "number";
+    }
+    // 演算子が入力された場合
+    else if (it_num === " + " || it_num === " - " || it_num === " * " || it_num === " / ") {
+        
+        // 最初の数値がまだない場合
+        if (previousResult === null) {
+            previousResult = result.textContent;
+            currentOperator = it_num;
+            isNewNumber = true;
+            lastInputType = "operator";
+        } 
+        // 前の入力も演算子の場合、演算子を更新
+        else if (lastInputType === "operator") {
+            currentOperator = it_num;
+            lastInputType = "operator";
         }
-        else if (ope == " - ") {
-            result.textContent = Number(numFirst) - Number(num)
+        // 数値が入力されていた場合、計算を実行
+        else if (lastInputType === "number") {
+            const currentNum = result.textContent;
+            const calcResult = calculate(previousResult, currentNum, currentOperator);
+            
+            if (calcResult === "Error") {
+                result.textContent = "Error";
+                previousResult = null;
+                currentOperator = null;
+                isNewNumber = true;
+            } else {
+                result.textContent = calcResult;
+                previousResult = calcResult;
+                currentOperator = it_num;
+                isNewNumber = true;
+            }
+            lastInputType = "operator";
         }
-        else if (ope == " * ") {
-            result.textContent = Number(numFirst) * Number(num)
+    }
+    // = が入力された場合
+    else if (it_num === " = ") {
+        // 数値と演算子、両方がある場合に計算
+        if (previousResult !== null && currentOperator !== null && lastInputType === "number") {
+            const currentNum = result.textContent;
+            const calcResult = calculate(previousResult, currentNum, currentOperator);
+            
+            if (calcResult === "Error") {
+                result.textContent = "Error";
+                previousResult = null;
+                currentOperator = null;
+            } else {
+                result.textContent = calcResult;
+                // 連続計算のために結果を保持
+                previousResult = calcResult;
+            }
+            isNewNumber = true;
+            lastInputType = "operator";
         }
-        else if (ope == " / ") {
-            result.textContent = Number(numFirst) / Number(num)
-        }
-    };
-    if (onSecondNum == true) {
-        num = 0
     }
 };
 
@@ -62,116 +119,48 @@ function result_open(ans, it_num) {
 // 数字ボタンエリア
 // **************************************************************
 one.addEventListener("click", function() {
-    if (num === 0) {
-        num = "1";
-    }
-    else {
-        num = num + "1";
-    };
-    console.log(num);
-    result_open(num, "1");
+    result_open(result.textContent, "1");
 }); // 1ボタン押下処理
 two.addEventListener("click", function() {
-    if (num === 0) {
-        num = "2";
-    }
-    else {
-        num = num + "2";
-    };
-    console.log(num);
-    result_open(num, "2");
+    result_open(result.textContent, "2");
 }); // 2ボタン押下処理
 three.addEventListener("click", function() {
-    if (num === 0) {
-        num = "3";
-    }
-    else {
-        num = num + "3";
-    };
-    console.log(num);
-    result_open(num, "3");
+    result_open(result.textContent, "3");
 }); // 3ボタン押下処理
 four.addEventListener("click", function() {
-    if (num === 0) {
-        num = "4";
-    }
-    else {
-        num = num + "4";
-    };
-    console.log(num);
-    result_open(num, "4");
+    result_open(result.textContent, "4");
 }); // 4ボタン押下処理
 five.addEventListener("click", function() {
-    if (num === 0) {
-        num = "5";
-    }
-    else {
-        num = num + "5";
-    };
-    console.log(num);
-    result_open(num, "5");
+    result_open(result.textContent, "5");
 }); // 5ボタン押下処理
 six.addEventListener("click", function() {
-    if (num === 0) {
-        num = "6";
-    }
-    else {
-        num = num + "6";
-    };
-    console.log(num);
-    result_open(num, "6");
+    result_open(result.textContent, "6");
 }); // 6ボタン押下処理
 seven.addEventListener("click", function() {
-    if (num === 0) {
-        num = "7";
-    }
-    else {
-        num = num + "7";
-    };
-    console.log(num);
-    result_open(num, "7");
+    result_open(result.textContent, "7");
 }); // 7ボタン押下処理
 eight.addEventListener("click", function() {
-    if (num === 0) {
-        num = "8";
-    }
-    else {
-        num = num + "8";
-    };
-    console.log(num);
-    result_open(num, "8");
+    result_open(result.textContent, "8");
 }); // 8ボタン押下処理
 nine.addEventListener("click", function() {
-    if (num === 0) {
-        num = "9";
-    }
-    else {
-        num = num + "9";
-    };
-    console.log(num);
-    result_open(num, "9");
+    result_open(result.textContent, "9");
 }); // 9ボタン押下処理
 
 // **************************************************************
 // 演算子ボタンエリア
 // **************************************************************
 add.addEventListener("click", function() {
-    console.log(num);
-    result_open(num, " + ");
+    result_open(result.textContent, " + ");
 }); // +ボタン押下処理
 sub.addEventListener("click", function() {
-    console.log(num);
-    result_open(num, " - ");
+    result_open(result.textContent, " - ");
 }); // -ボタン押下処理
 mul.addEventListener("click", function() {
-    console.log(num);
-    result_open(num, " * ");
+    result_open(result.textContent, " * ");
 }); // *ボタン押下処理
 div.addEventListener("click", function() {
-    console.log(num);
-    result_open(num, " / ");
+    result_open(result.textContent, " / ");
 }); // /ボタン押下処理
 equal.addEventListener("click", function() {
-    console.log(num);
-    result_open(num, " = ")
+    result_open(result.textContent, " = ")
 });// =ボタン押下処理
