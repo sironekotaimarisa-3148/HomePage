@@ -6,6 +6,7 @@ window.onload = function() {
 };
 
 function showMain() {
+    history.pushState(null, null, "mainPage");
     document.getElementById('main').innerHTML = mainContent;
     // cal.js を削除
     const calScript = document.getElementById('cal-script');
@@ -15,6 +16,7 @@ function showMain() {
 }
 
 function showCal() {
+    history.pushState(null, null, "calPage");
     const calHTML = `
         <h2>電卓</h2>
         <div class="cal">
