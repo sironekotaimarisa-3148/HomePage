@@ -83,6 +83,7 @@ header {
 
 /* --- ボタン（最も重要！） --- */
 .link-item {
+    display: grid;
     background-color: var(--color-accent);
     color: var(--color-background); /* 文字色を背景色にすることでコントラストを強調 */
     padding: 12px 30px;
@@ -94,12 +95,23 @@ header {
     box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
     transition: all var(--transition-speed);
     margin-bottom: 5px;
+    text-decoration: none; /* aタグのデフォルト下線を消す */
+}
+
+.link-item div {
+    align-items: center;
+    text-align: center;
 }
 
 .link-item:hover {
     transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
     box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
     background-color: #7affd3;
+    color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
+}
+
+.link-image {
+    margin-right: auto;
 }
 
 
@@ -115,13 +127,14 @@ header {
     box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
     transition: all var(--transition-speed);
     margin-bottom: 5px;
-    margin-left: 5px;
+    margin-left: 15px;
 }
 
 .header-link-main:hover {
     transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
     box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
     background-color: #7affd3;
+    color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
 }
 
 .header-link-cal {
@@ -144,6 +157,7 @@ header {
     transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
     box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
     background-color: #7affd3;
+    color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
 }
 /* --- cal --- */
 .cal_btn {
