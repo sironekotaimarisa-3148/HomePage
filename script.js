@@ -1,12 +1,17 @@
 // 初期のメイン内容を保存
 let mainContent = '';
 
+let onPage = "mainPage";
+let beforePage = "mainPage";
+
 window.onload = function() {
     mainContent = document.getElementById('main').innerHTML;
 };
 
 function showMain() {
+    beforePage = onPage;
     history.pushState(null, null, "mainPage");
+    onPage = "mainPage";
     document.getElementById('main').innerHTML = mainContent;
     // cal.js を削除
     const calScript = document.getElementById('cal-script');
@@ -16,7 +21,9 @@ function showMain() {
 }
 
 function showCal() {
+    beforePage = onPage;
     history.pushState(null, null, "calPage");
+    onPage = "calPage";
     const calHTML = `
         <h2>電卓</h2>
         <div class="cal">
@@ -58,3 +65,21 @@ function showCal() {
         window.initializeCalCalculator();
     }
 }
+
+window.onpopstate = function() {
+    if (onPage === "mainPage") {
+        if (beforePage === "calPage") {
+            showCal();
+        }
+        else if (beforePage === "mainPage") {
+            showMain();
+        }
+    } else if (onPage === "calPage") {
+        if (beforePage === "mainPage") {
+            showMain();
+        }
+        else if (beforePage === "calPage") {
+            showCal();
+        }
+    }
+};
