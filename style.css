@@ -150,7 +150,6 @@ header {
     transition: all var(--transition-speed);
     margin-bottom: 5px;
     margin-left: 5px;
-    margin-right: auto;
 }
 
 .header-link-cal:hover {
@@ -158,6 +157,36 @@ header {
     box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
     background-color: #7affd3;
     color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
+}
+
+.header-link-stamp {
+    background-color: var(--color-accent);
+    color: var(--color-background); /* 文字色を背景色にすることでコントラストを強調 */
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px; /* 角を丸くして優しい印象に */
+    box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
+    transition: all var(--transition-speed);
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: auto;
+}
+
+.header-link-stamp:hover {
+    transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
+    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
+    background-color: #7affd3;
+    color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
+}
+
+.stamp {
+    font-size: 1.5rem;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column; 
 }
 /* --- cal --- */
 .cal_btn {
