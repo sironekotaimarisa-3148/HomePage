@@ -1,39 +1,42 @@
+import imageFile from '../assets/images/image.png';
+import scratchFile from '../assets/images/scratch_image.png';
+
 function MainPage() {
   const links = [
     {
       title: 'Scratch',
       url: 'https://scratch.mit.edu/users/sironekotaimarisa/',
-      image: '/images/scratch_image.png',
+      image: scratchFile,
       alt: 'Scratch'
     },
     {
       title: '空想鉄道',
       url: 'https://ku-tetsu.net/458298.html',
-      image: '/images/image.png',
+      image: imageFile,
       alt: 'ku-tetsu'
     },
     {
       title: 'Lit',
       url: 'https://lit.link/sironekotaimarisa',
-      image: '/images/image.png',
+      image: imageFile,
       alt: 'lit'
     },
     {
       title: 'raillab',
       url: 'https://raillab.jp/member/sironekotaimarisa',
-      image: '/images/image.png',
+      image: imageFile,
       alt: 'raillab'
     },
     {
       title: 'scratch鉄道wiki',
       url: 'https://scratchrailway.miraheze.org/wiki/利用者:白猫隊魔理沙',
-      image: '/images/image.png',
+      image: imageFile,
       alt: 'way_wiki'
     },
     {
       title: 'YouTube',
       url: 'https://www.youtube.com/@白猫隊魔理沙',
-      image: '/images/image.png',
+      image: imageFile,
       alt: 'youtube'
     }
   ];
