@@ -22,16 +22,34 @@ function StampPage() {
     { label: 'ごめん', image: stampImageSorry, alt: 'ごめん' },
     { label: 'ただいま', image: stampImageImHome, alt: 'ただいま' }
   ];
+  async function CopyImage(imageUrl) {
+  const imgUrl = imageUrl; // コピーしたい画像のURLを指定
+  
+  try {
+    // 1. 画像を取得してBlob（バイナリデータ）に変換
+    const response = await fetch(imgUrl);
+    const blob = await response.blob();
+    
+    // 2. クリップボードに書き込める形式（ClipboardItem）に変換
+    const item = new ClipboardItem({ [blob.type]: blob });
+    
+    // 3. クリップボードへ書き込み
+    await navigator.clipboard.write([item]);
+    alert("画像をコピーしました！");
+  } catch (error) {
+    console.error("コピーに失敗しました", error);
+  }
+}
 
   return (
     <div id="main">
       <h2>スタンプ</h2>
       <div className="stamp-container">
         {stamps.map((stamp, index) => (
-          <div key={index} className="stamp-item">
+          <button key={index} className="stamp-item" onClick={() => CopyImage(stamp.image)}>
             <div className="stamp">{stamp.label}</div>
             <img src={stamp.image} alt={stamp.alt} />
-          </div>
+          </button>
         ))}
       </div>
     </div>
