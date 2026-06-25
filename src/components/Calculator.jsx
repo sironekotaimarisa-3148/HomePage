@@ -156,6 +156,7 @@ function Calculator() {
           <button type="button" className="cal_btn" onClick={() => handleNumberClick('7')}>7</button>
           <button type="button" className="cal_btn" onClick={() => handleNumberClick('8')}>8</button>
           <button type="button" className="cal_btn" onClick={() => handleNumberClick('9')}>9</button>
+          <button type="button" className="cal_btn" onClick={() => handleNumberClick('0')}>0</button>
           <button type="button" className="cal_btn" onClick={() => handleOperatorClick(' + ')}>+</button>
           <button type="button" className="cal_btn" onClick={() => handleOperatorClick(' - ')}>-</button>
           <button type="button" className="cal_btn" onClick={() => handleOperatorClick(' * ')}>*</button>
