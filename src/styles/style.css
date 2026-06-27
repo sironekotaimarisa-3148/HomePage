@@ -69,6 +69,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
     position: sticky; /* スクロール時に固定されることでプロっぽく見える */
     top: 0;
     z-index: 100; /* 最前面に配置 */
@@ -83,9 +84,12 @@ header {
     margin-left: 5px;
 }
 
-.header-container {
+.header-actions {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 /* --- ボタン（最も重要！） --- */
@@ -132,8 +136,8 @@ header {
     border-radius: 8px; /* 角を丸くして優しい印象に */
     box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
     transition: all var(--transition-speed);
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .header-link:hover {
@@ -251,9 +255,14 @@ h2::after {
         padding: 1rem;
         text-align: center;
     }
-    .logo {
+    .name {
         margin-bottom: 10px;
+        margin-right: 0;
         font-size: 1.5rem;
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: center;
     }
     /* スマホではグリッドを単一行に強制する */
     .grid-layout {
@@ -262,6 +271,31 @@ h2::after {
     }
     .container {
         padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) and (max-aspect-ratio: 3/4) {
+    header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .name {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+
+    .header-link {
+        padding: 0.55rem 0.7rem;
+        font-size: 0.85rem;
     }
 }
 
