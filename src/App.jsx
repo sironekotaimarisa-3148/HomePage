@@ -3,6 +3,7 @@ import Calculator from './components/Calculator';
 import Header from './components/Header';
 import MainPage from './components/MainPage';
 import StampPage from './components/StampPage';
+import Totop from './components/Totop';
 import './styles/style.css';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
     <div>
       <Header onPageChange={handlePageChange} />
       {renderPage()}
+      <Totop/>
     </div>
   );
 }

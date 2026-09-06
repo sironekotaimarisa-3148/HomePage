@@ -147,6 +147,47 @@ header {
     color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
 }
 
+.toTopContainer {
+    padding: 30px;
+    background-color: var(--color-background);
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.toTop {
+    background-color: var(--color-accent);
+    color: var(--color-background); /* 文字色を背景色にすることでコントラストを強調 */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px; /* 角を丸くして優しい印象に */
+    box-shadow: var(--shadow-glow); /* グロー効果で特別感を出す */
+    transition: all var(--transition-speed);
+    margin: 0;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.toTop:hover {
+    transform: translateY(-3px) scale(1.02); /* ホバー時に浮き上がるような動き */
+    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4); /* より強い影に変化させる */
+    background-color: #7affd3;
+    color : var(--color-background); /* ホバー時も文字色は背景色のままにする */
+}
 
 /* --- cal --- */
 .btn_con {
